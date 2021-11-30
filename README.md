@@ -6,8 +6,7 @@ https://stashapp.cc
 [![Go Report Card](https://goreportcard.com/badge/github.com/stashapp/stash)](https://goreportcard.com/report/github.com/stashapp/stash)
 [![Discord](https://img.shields.io/discord/559159668438728723.svg?logo=discord)](https://discord.gg/2TsNFKt)
 
-### **Stash is a self-hosted webapp written in Go which organizes and serves your porn.**
-![demo image](docs/readme_assets/demo_image.png)
+### **Stash is a self-hosted webapp written in Go which organizes and serves your movie.**
 
 * Stash gathers information about videos in your collection from the internet, and is extensible through the use of community-built plugins for a large number of content producers and sites.
 * Stash supports a wide variety of both video and image formats.

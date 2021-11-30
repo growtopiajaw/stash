@@ -767,16 +767,16 @@
     },
     "paths": {
       "database_filename_empty_for_default": "database filename (empty for default)",
-      "description": "Next up, we need to determine where to find your porn collection, where to store the stash database and generated files. These settings can be changed later if needed.",
+      "description": "Next up, we need to determine where to find your movie collection, where to store the stash database and generated files. These settings can be changed later if needed.",
       "path_to_generated_directory_empty_for_default": "path to generated directory (empty for default)",
       "set_up_your_paths": "Set up your paths",
       "stash_alert": "No library paths have been selected. No media will be able to be scanned into Stash. Are you sure?",
       "where_can_stash_store_its_database": "Where can Stash store its database?",
-      "where_can_stash_store_its_database_description": "Stash uses an sqlite database to store your porn metadata. By default, this will be created as <code>stash-go.sqlite</code> in the directory containing your config file. If you want to change this, please enter an absolute or relative (to the current working directory) filename.",
+      "where_can_stash_store_its_database_description": "Stash uses an sqlite database to store your movie metadata. By default, this will be created as <code>stash-go.sqlite</code> in the directory containing your config file. If you want to change this, please enter an absolute or relative (to the current working directory) filename.",
       "where_can_stash_store_its_generated_content": "Where can Stash store its generated content?",
       "where_can_stash_store_its_generated_content_description": "In order to provide thumbnails, previews and sprites, Stash generates images and videos. This also includes transcodes for unsupported file formats. By default, Stash will create a <code>generated</code> directory within the directory containing your config file. If you want to change where this generated media will be stored, please enter an absolute or relative (to the current working directory) path. Stash will create this directory if it does not already exist.",
-      "where_is_your_porn_located": "Where is your porn located?",
-      "where_is_your_porn_located_description": "Add directories containing your porn videos and images. Stash will use these directories to find videos and images during scanning."
+      "where_is_your_porn_located": "Where is your movie located?",
+      "where_is_your_porn_located_description": "Add directories containing your movie videos and images. Stash will use these directories to find videos and images during scanning."
     },
     "stash_setup_wizard": "Stash Setup Wizard",
     "success": {

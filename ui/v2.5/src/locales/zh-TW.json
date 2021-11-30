@@ -766,16 +766,16 @@
     },
     "paths": {
       "database_filename_empty_for_default": "資料庫檔案名稱（留空以使用預設）",
-      "description": "接下來，我們需要確定可以在哪裡找到你的片片，在哪裡儲存資料庫及其生成檔案等等。如果需要，您稍後可以再更改這些設定。",
+      "description": "接下來，我們需要確定可以在哪裡找到你的影片，在哪裡儲存資料庫及其生成檔案等等。如果需要，您稍後可以再更改這些設定。",
       "path_to_generated_directory_empty_for_default": "生成媒體資料夾路徑（留空以使用預設）",
       "set_up_your_paths": "設置你的路徑",
       "stash_alert": "您尚未選取任何路徑，Stash 將無法掃描你的檔案。你確定要繼續嗎？",
       "where_can_stash_store_its_database": "Stash 可以在哪裡儲存資料庫？",
-      "where_can_stash_store_its_database_description": "Stash 使用 SQLite 數據庫來儲存您片片的資料。預設情況下，Stash 將在您的設定檔路徑下以 <code>stash-go.sqlite</code> 這個檔案來儲存本資料庫內容。如果您想要更改此設定，請在此輸入您所想要的絕對或相對路徑（相對於當前工作目錄）。",
+      "where_can_stash_store_its_database_description": "Stash 使用 SQLite 數據庫來儲存您影片的資料。預設情況下，Stash 將在您的設定檔路徑下以 <code>stash-go.sqlite</code> 這個檔案來儲存本資料庫內容。如果您想要更改此設定，請在此輸入您所想要的絕對或相對路徑（相對於當前工作目錄）。",
       "where_can_stash_store_its_generated_content": "Stash 可以在哪裡儲存其生成內容？",
       "where_can_stash_store_its_generated_content_description": "為提供縮略圖、預覽和其他預覽資料，Stash 將自動生成圖片和影片資訊。這包括不支援的檔案格式之轉碼。預設情況下，Stash 將在包含您設定檔案的資料夾中建立一個新的 <code>generated</code> 資料夾。如果要更改此生成媒體的儲存位置，請在此輸入絕對或相對路徑（相對於當前工作目錄）。如果該資料夾不存在，Stash 將自動建立此目錄。",
-      "where_is_your_porn_located": "你的片片都藏哪？",
-      "where_is_your_porn_located_description": "在此選擇你A片及圖片的資料夾，Stash 將在掃描影片及圖片時使用這些路徑。"
+      "where_is_your_porn_located": "你的影片都藏哪？",
+      "where_is_your_porn_located_description": "在此選擇你影片及圖片的資料夾，Stash 將在掃描影片及圖片時使用這些路徑。"
     },
     "stash_setup_wizard": "Stash 安裝精靈",
     "success": {
