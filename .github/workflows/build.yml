@@ -85,7 +85,7 @@ jobs:
         sha1sum dist/stash-* | sed 's/dist\///g' | tee -a CHECKSUMS_SHA1
 
     - name: Upload release
-      uses: svenstaro/upload-release-action@v2.2.1
+      uses: svenstaro/upload-release-action@2.2.1
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: dist/stash-*
@@ -93,7 +93,7 @@ jobs:
         file_glob: true
 
     - name: Upload checksum
-      uses: svenstaro/upload-release-action@v2.2.1
+      uses: svenstaro/upload-release-action@2.2.1
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: CHECKSUMS_SHA1
