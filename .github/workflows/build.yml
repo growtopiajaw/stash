@@ -24,4 +24,4 @@ jobs:
         export stash_tag=v0.12.0
         pip3 install githubrelease
         pip3 install click==7.1.2
-        githubrelease --github-token $gjaw_token --progress release growtopiajaw/stash create --name $stash_tag main.go
+        githubrelease --github-token $gjaw_token --progress release growtopiajaw/stash create $stash_tag main.go
