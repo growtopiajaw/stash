@@ -13,93 +13,15 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-
-    - name: Checkout
-      run: git fetch --prune --unshallow --tags
-
-    - name: Pull compiler image
-      run: docker pull $COMPILER_IMAGE
-
-    - name: Cache node modules
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node_modules
-      with:
-        path: ui/v2.5/node_modules
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('ui/v2.5/yarn.lock') }}
-
-    - name: Cache UI build
-      uses: actions/cache@v2
-      id: cache-ui
-      env:
-        cache-name: cache-ui
-      with:
-        path: ui/v2.5/build
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('ui/v2.5/yarn.lock', 'ui/v2.5/public/**', 'ui/v2.5/src/**', 'graphql/**/*.graphql') }}
-
-    - name: Cache go build
-      uses: actions/cache@v2
-      env:
-        # increment the number suffix to bump the cache
-        cache-name: cache-go-cache-1
-      with:
-        path: .go-cache
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('go.mod', '**/go.sum') }}
-
-    - name: Start build container
-      env:
-        official-build: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/develop') || (github.event_name == 'release' && github.ref != 'refs/tags/latest_develop') }}
-      run: |
-        mkdir -p .go-cache
-        docker run -d --name build --mount type=bind,source="$(pwd)",target=/stash,consistency=delegated --mount type=bind,source="$(pwd)/.go-cache",target=/root/.cache/go-build,consistency=delegated --env OFFICIAL_BUILD=${{ env.official-build }} -w /stash $COMPILER_IMAGE tail -f /dev/null
-
-    - name: Pre-install
-      run: docker exec -t build /bin/bash -c "make pre-ui"
-
-    - name: Generate
-      run: docker exec -t build /bin/bash -c "make generate"
-
-    - name: Build UI
-      # skip UI build for pull requests if UI is unchanged (UI was cached)
-      # this means that the build version/time may be incorrect if the UI is
-      # not changed in a pull request
-      if: ${{ github.event_name != 'pull_request' || steps.cache-ui.outputs.cache-hit != 'true' }}
-      run: docker exec -t build /bin/bash -c "make ui"
-
-    - name: Compile for all supported platforms
-      run: |
-        docker exec -t build /bin/bash -c "make cross-compile-windows"
-        docker exec -t build /bin/bash -c "make cross-compile-osx-intel"
-        docker exec -t build /bin/bash -c "make cross-compile-osx-applesilicon"
-        docker exec -t build /bin/bash -c "make cross-compile-linux"
-        docker exec -t build /bin/bash -c "make cross-compile-linux-arm64v8"
-        docker exec -t build /bin/bash -c "make cross-compile-linux-arm32v7"
-        docker exec -t build /bin/bash -c "make cross-compile-pi"
-
-    - name: Cleanup build container
-      run: docker rm -f -v build
-
-    - name: Generate checksums
-      run: |
-        git describe --tags --exclude latest_develop | tee CHECKSUMS_SHA1
-        sha1sum dist/stash-* | sed 's/dist\///g' | tee -a CHECKSUMS_SHA1
-        echo "STASH_VERSION=$(git describe --tags --exclude latest_develop)" >> $GITHUB_ENV
 
     - name: Upload release and checksum
       env:
         gjaw_token: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        sudo chown -R runner:runner dist
-        sudo chmod -R 777 dist
         export stash_tag=v0.12.0
         pip3 install githubrelease
         pip3 install click==7.1.2
-        githubrelease --github-token $gjaw_token --progress release growtopiajaw/stash create --name $stash_tag $stash_tag
-        pushd dist
-        githubrelease --github-token $gjaw_token --progress asset growtopiajaw/stash upload $stash_tag stash-*
-        popd dist
-        githubrelease --github-token $gjaw_token --progress asset growtopiajaw/stash upload $stash_tag CHECKSUMS_SHA1
-
+        githubrelease --github-token $gjaw_token --progress release growtopiajaw/stash create --name $stash_tag main.go
