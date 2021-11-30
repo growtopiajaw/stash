@@ -92,7 +92,21 @@ jobs:
       env:
         gjaw_token: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        echo -e "Contents of current directory"
+        ls -lha
+        echo -e "Contents of parent directory"
+        ls -lha ..
+        echo -e "Path of current directory"
+        pwd
+        echo -e "Contents of dist"
+        ls -lha dist
+        echo
         export stash_tag=v0.12.0
         pip3 install githubrelease
         pip3 install click==7.1.2
-        githubrelease --github-token $gjaw_token --progress release growtopiajaw/stash create --name $stash_tag --publish $stash_tag dist/stash-* CHECKSUMS_SHA1
+        githubrelease --github-token $gjaw_token --progress release GrowtopiaJaw/stash create --name $stash_tag $stash_tag
+        pushd dist
+        githubrelease --github-token $gjaw_token --progress asset GrowtopiaJaw/stash upload $stash_tag stash-*
+        popd dist
+        githubrelease --github-token $gjaw_token --progress asset GrowtopiaJaw/stash upload $stash_tag CHECKSUMS_SHA1
+
